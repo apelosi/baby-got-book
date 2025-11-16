@@ -233,28 +233,106 @@ async function exportToPDF() {
         
         let isFirstPage = true;
         
+        // Create a temporary container for rendering
+        const tempContainer = $('<div>').css({
+            position: 'fixed',
+            left: '-10000px',
+            top: '0',
+            width: '500px',
+            height: '500px',
+            background: 'white'
+        }).appendTo('body');
+        
         // Process each page individually
         for (let i = 0; i < currentBook.pages.length; i++) {
             const page = currentBook.pages[i];
-            const pageElement = $(`.page[data-page-number="${page.pageNumber}"]`)[0];
             
-            if (!pageElement) {
-                console.warn(`Page element not found for page ${page.pageNumber}`);
-                continue;
+            console.log(`Rendering page ${page.pageNumber} to PDF...`);
+            
+            // Create a clean page element for PDF
+            const pdfPage = $('<div>').css({
+                width: '500px',
+                height: '500px',
+                position: 'relative',
+                backgroundColor: page.backgroundColor || '#ffffff',
+                overflow: 'hidden',
+                borderRadius: '0' // No rounded corners in PDF
+            });
+            
+            // Add page image if it exists
+            if (page.image) {
+                const img = $('<img>').attr('src', page.image).css({
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    position: 'absolute',
+                    top: '0',
+                    left: '0'
+                });
+                pdfPage.append(img);
+                
+                // Wait for image to load
+                await new Promise((resolve) => {
+                    img.on('load', resolve);
+                    img.on('error', () => {
+                        console.warn(`Image failed to load for page ${page.pageNumber}`);
+                        resolve();
+                    });
+                    // Timeout after 5 seconds
+                    setTimeout(resolve, 5000);
+                });
             }
+            
+            // Add text overlay
+            const textContainer = $('<div>').css({
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '32px',
+                boxSizing: 'border-box',
+                textAlign: 'center',
+                zIndex: '1'
+            });
+            
+            page.text.lines.forEach(line => {
+                const textElement = $('<p>').text(line.text).css({
+                    fontFamily: 'Roboto, sans-serif',
+                    fontSize: line.size === 'large' ? '3rem' : line.size === 'medium' ? '2rem' : '1.25rem',
+                    fontWeight: line.weight || 'normal',
+                    textTransform: line.weight === 'bold' ? 'uppercase' : 'none',
+                    color: page.text.color === 'white' ? '#ffffff' : '#000000',
+                    marginBottom: '12px',
+                    lineHeight: '1.3',
+                    textShadow: page.text.color === 'white' ? '1px 1px 2px rgba(0,0,0,0.5)' : 'none'
+                });
+                textContainer.append(textElement);
+            });
+            
+            pdfPage.append(textContainer);
+            
+            // Add to temp container
+            tempContainer.empty().append(pdfPage);
+            
+            // Wait a bit for rendering
+            await new Promise(resolve => setTimeout(resolve, 100));
             
             // Add new page if not first
             if (!isFirstPage) {
                 pdf.addPage([500, 500], 'portrait');
             }
             
-            console.log(`Rendering page ${page.pageNumber} to PDF...`);
-            
             // Render page to canvas
-            const canvas = await html2canvas(pageElement, {
+            const canvas = await html2canvas(pdfPage[0], {
                 backgroundColor: page.backgroundColor || '#ffffff',
                 scale: 2,
                 useCORS: true,
+                allowTaint: true,
                 width: 500,
                 height: 500,
                 logging: false,
@@ -267,12 +345,17 @@ async function exportToPDF() {
             pdf.addImage(imgData, 'PNG', 0, 0, 500, 500);
             
             isFirstPage = false;
+            
+            console.log(`✓ Page ${page.pageNumber} rendered successfully`);
         }
+        
+        // Remove temp container
+        tempContainer.remove();
         
         // Save PDF
         const filename = `${currentBook.title.replace(/\s+/g, '-')}.pdf`;
         pdf.save(filename);
-        console.log(`PDF saved as ${filename}`);
+        console.log(`✓ PDF saved as ${filename} with ${currentBook.pages.length} pages`);
         
     } catch (error) {
         console.error('Error generating PDF:', error);
