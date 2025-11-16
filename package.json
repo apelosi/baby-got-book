@@ -1,0 +1,25 @@
+{
+  "name": "baby-got-book",
+  "version": "1.0.0",
+  "description": "A web application for viewing personalized children's board books",
+  "main": "index.html",
+  "scripts": {
+    "generate-images": "node scripts/generate-images.js",
+    "generate-images-dalle": "node scripts/generate-images-with-dalle.js",
+    "test-imagen": "node scripts/test-imagen.js",
+    "test-gemini": "node scripts/test-gemini.js"
+  },
+  "keywords": [
+    "children",
+    "books",
+    "board-book",
+    "illustration"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "dotenv": "^16.4.5",
+    "openai": "^4.104.0"
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kai's First Birthday Book</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/book-viewer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://raw.githack.com/blasten/turn.js/master/turn.min.js"></script>
+</head>
+<body>
+    <div class="book-viewer-container">
+        <header class="mdc-top-app-bar book-viewer-header">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <button class="mdc-icon-button material-icons" id="backButton" aria-label="Back to library">
+                        arrow_back
+                    </button>
+                    <span class="mdc-top-app-bar__title" id="bookTitle">Kai's First Birthday Book</span>
+                </section>
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                    <button class="mdc-button mdc-button--raised" id="exportPdfButton">
+                        <span class="mdc-button__ripple"></span>
+                        <span class="mdc-button__label">Export PDF</span>
+                    </button>
+                </section>
+            </div>
+        </header>
+
+        <main class="book-viewer-main">
+            <div class="book-wrapper">
+                <div class="book-controls book-controls-left">
+                    <button class="mdc-icon-button material-icons page-turn-btn" id="prevPage" aria-label="Previous page">
+                        chevron_left
+                    </button>
+                </div>
+                
+                <div id="book" class="book">
+                    <!-- Pages will be dynamically generated here -->
+                </div>
+
+                <div class="book-controls book-controls-right">
+                    <button class="mdc-icon-button material-icons page-turn-btn" id="nextPage" aria-label="Next page">
+                        chevron_right
+                    </button>
+                </div>
+            </div>
+
+            <div class="page-indicator">
+                <span id="currentPage">1</span> / <span id="totalPages">18</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/book-data.js"></script>
+    <script src="js/book-viewer.js"></script>
+</body>
+</html>
+
