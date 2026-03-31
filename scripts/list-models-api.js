@@ -6,12 +6,12 @@ require('dotenv').config();
 const https = require('https');
 
 async function listModels() {
-    if (!process.env.GEMINI_API_KEY) {
-        console.error('Error: GEMINI_API_KEY not found in .env file');
+    if (!process.env.GOOGLE_AI_API_KEY) {
+        console.error('Error: GOOGLE_AI_API_KEY not found in .env file');
         process.exit(1);
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GOOGLE_AI_API_KEY;
     const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`;
 
     return new Promise((resolve, reject) => {

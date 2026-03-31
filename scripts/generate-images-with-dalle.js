@@ -20,8 +20,8 @@ const https = require('https');
 let genAI = null;
 let openai = null;
 
-if (process.env.GEMINI_API_KEY) {
-    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+if (process.env.GOOGLE_AI_API_KEY) {
+    genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
 }
 
 if (process.env.OPENAI_API_KEY) {
@@ -142,7 +142,7 @@ async function main() {
     if (genAI) {
         console.log('(Using Gemini to optimize prompts)\n');
     } else {
-        console.log('(Using original prompts - add GEMINI_API_KEY to .env to optimize prompts)\n');
+        console.log('(Using original prompts - add GOOGLE_AI_API_KEY to .env to optimize prompts)\n');
     }
     console.log(`Output directory: ${outputDir}\n`);
     

@@ -26,7 +26,7 @@ npm install @google/generative-ai dotenv
 1. Get your Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Create a `.env` file in the project root:
    ```
-   GEMINI_API_KEY=your_api_key_here
+   GOOGLE_AI_API_KEY=your_api_key_here
    ```
 3. **Important**: Add `.env` to your `.gitignore` file to keep your API key secure
 
@@ -129,7 +129,7 @@ The PDF export creates a landscape-oriented PDF with:
 - Some browsers may block PDF downloads - check popup blockers
 
 ### API Key Issues
-- Verify `.env` file exists and contains `GEMINI_API_KEY`
+- Verify `.env` file exists and contains `GOOGLE_AI_API_KEY`
 - Check that the API key is valid and has proper permissions
 - Ensure `dotenv` package is installed if running image generation script
 

@@ -186,7 +186,7 @@ for (const pageData of bookPages.filter(p => p.pageNumber === 5)) {
 ### Check API Key
 ```bash
 cat .env
-# Should show: GEMINI_API_KEY=your_key_here
+# Should show: GOOGLE_AI_API_KEY=your_key_here
 ```
 
 ## Success Criteria

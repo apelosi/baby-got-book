@@ -6,7 +6,7 @@
  * 
  * Setup:
  * 1. Install Node.js dependencies: npm install @google/generative-ai dotenv
- * 2. Create a .env file in the project root with: GEMINI_API_KEY=your_api_key_here
+ * 2. Create a .env file in the project root with: GOOGLE_AI_API_KEY=your_api_key_here
  * 3. Run: node scripts/generate-images.js
  */
 
@@ -22,13 +22,13 @@ const { improvedPagePrompts, referenceImagesMap } = require('./improved-page-pro
 let genAI = null;
 let imageModel = null;
 
-if (process.env.GEMINI_API_KEY) {
-    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+if (process.env.GOOGLE_AI_API_KEY) {
+    genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
     // Use Gemini 2.5 Flash Image - latest Gemini model with native image generation
     // Alternative: gemini-2.0-flash-exp-image-generation
     imageModel = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-image' });
 } else {
-    console.error('Error: GEMINI_API_KEY not found in .env file');
+    console.error('Error: GOOGLE_AI_API_KEY not found in .env file');
     process.exit(1);
 }
 
@@ -403,9 +403,9 @@ IMPORTANT REMINDERS:
 
 async function main() {
     // Check for API key
-    if (!process.env.GEMINI_API_KEY) {
-        console.error('Error: GEMINI_API_KEY not found in .env file');
-        console.log('Please create a .env file with: GEMINI_API_KEY=your_api_key_here');
+    if (!process.env.GOOGLE_AI_API_KEY) {
+        console.error('Error: GOOGLE_AI_API_KEY not found in .env file');
+        console.log('Please create a .env file with: GOOGLE_AI_API_KEY=your_api_key_here');
         process.exit(1);
     }
     

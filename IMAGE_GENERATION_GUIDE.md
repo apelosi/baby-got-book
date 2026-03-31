@@ -17,7 +17,7 @@
 ### 1. Ensure API Key is Set
 Your Gemini API key should already be in `.env`:
 ```
-GEMINI_API_KEY=your_api_key_here
+GOOGLE_AI_API_KEY=your_api_key_here
 ```
 
 ### 2. Generate Images

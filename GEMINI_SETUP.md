@@ -32,7 +32,7 @@ If Gemini Flash 2.5 doesn't support direct image generation, you can modify the 
 4. Copy your API key
 5. Add it to your `.env` file:
    ```
-   GEMINI_API_KEY=your_api_key_here
+   GOOGLE_AI_API_KEY=your_api_key_here
    ```
 
 ## Current Script Structure
@@ -83,7 +83,7 @@ async function generatePageImage(pageData) {
 
 ## Troubleshooting
 
-- **"API key not found"**: Check that `.env` file exists and contains `GEMINI_API_KEY`
+- **"API key not found"**: Check that `.env` file exists and contains `GOOGLE_AI_API_KEY`
 - **"Model not found"**: Verify the model name is correct (`gemini-2.0-flash-exp` or current version)
 - **"Image generation not supported"**: The model may not support image generation - use an alternative service
 - **Reference images not loading**: Check file paths are correct relative to the script location

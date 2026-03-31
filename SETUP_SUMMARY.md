@@ -28,7 +28,7 @@
 1. Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Create a `.env` file in the project root:
    ```
-   GEMINI_API_KEY=your_api_key_here
+   GOOGLE_AI_API_KEY=your_api_key_here
    ```
 3. Install dependencies:
    ```bash
