@@ -72,7 +72,7 @@ Simple library grid that displays available books as clickable cards.
 python3 -m http.server 8000
 
 # Or with Node.js
-npx serve .
+bunx serve .
 ```
 
 Then open http://localhost:8000
