@@ -28,3 +28,6 @@ npm-debug.log*
 *.tmp
 *.temp
 
+
+# Local Netlify folder
+.netlify

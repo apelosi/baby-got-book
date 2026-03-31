@@ -2593,7 +2593,7 @@ The application is ready to use once you generate the images. If you need help a
 
 **User**
 
-GEMINI_API_KEY=AIzaSyCH4n-sjSUykma7g3uvOoLfhPpcfPM9IFg
+GEMINI_API_KEY=your_api_key_here
 
 ---
 
@@ -2607,14 +2607,14 @@ The `.env` file is protected. Create it manually:
 1. Create a file named `.env` in the project root
 2. Add this line:
    ```
-   GEMINI_API_KEY=AIzaSyCH4n-sjSUykma7g3uvOoLfhPpcfPM9IFg
+   GEMINI_API_KEY=your_api_key_here
    ```
 
 Dependencies are installed. Checking Gemini API capabilities and updating the image generation script accordingly:
 
 
 ```plaintext
-   GEMINI_API_KEY=AIzaSyCH4n-sjSUykma7g3uvOoLfhPpcfPM9IFg
+   GEMINI_API_KEY=your_api_key_here
 ```
 
 Creating a test script to verify the API key and check Gemini's capabilities, then updating the image generation script:
